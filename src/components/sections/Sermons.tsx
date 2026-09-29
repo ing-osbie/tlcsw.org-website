@@ -2,46 +2,107 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Play, Calendar, ArrowRight, Video } from "lucide-react";
 import { sermonsData, churchInfo } from "@/data/churchData";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 
 export const Sermons: React.FC = () => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      const playVideo = () => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Autoplay fallback
+          });
+        }
+      };
+      playVideo();
+      video.addEventListener("loadedmetadata", playVideo);
+      video.addEventListener("canplay", playVideo);
+      return () => {
+        video.removeEventListener("loadedmetadata", playVideo);
+        video.removeEventListener("canplay", playVideo);
+      };
+    }
+  }, []);
+
   return (
     <section
       id="sermons"
       aria-label="Recent Sermons and Teachings"
-      className="py-20 sm:py-28 lg:py-32 bg-cream-surface border-t border-b border-cream-border relative"
+      className="py-20 sm:py-28 lg:py-32 bg-cream-surface border-t border-b border-cream-border relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background Video Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <video
+          ref={videoRef}
+          src="/videos/sermons-background.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/videos/sermons-background-poster.jpg"
+          preload="auto"
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/videos/sermons-background.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Subtle Dark Overlay */}
+      <div
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-cream-surface/75 via-black/35 to-black/45 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <SectionHeading
-          kicker="Scripture & Teaching"
-          title="Messages for Your Journey"
-          subtitle="Explore recent biblical teachings that speak hope, wisdom, and challenge into everyday contemporary life."
-          alignment="split"
-          actionSlot={
-            <Button
-              variant="outline"
-              size="md"
-              href={churchInfo.socials.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Browse Full Archive
-            </Button>
-          }
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-14 sm:mb-18"
-        />
+        >
+          <SectionHeading
+            kicker="Scripture & Teaching"
+            title="Messages for Your Journey"
+            subtitle="Explore recent biblical teachings that speak hope, wisdom, and challenge into everyday contemporary life."
+            alignment="split"
+            actionSlot={
+              <Button
+                variant="outline"
+                size="md"
+                href={churchInfo.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                icon={<ArrowRight className="w-4 h-4" />}
+              >
+                Browse Full Archive
+              </Button>
+            }
+          />
+        </motion.div>
 
         {/* 3 Featured Sermons Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sermonsData.map((sermon) => (
-            <div
+          {sermonsData.map((sermon, idx) => (
+            <motion.div
               key={sermon.id}
-              className="group bg-cream rounded-3xl overflow-hidden border border-cream-border hover:border-sand hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.12, ease: "easeOut" }}
+              className="group bg-cream rounded-3xl overflow-hidden border border-cream-border hover:border-sand hover:shadow-2xl hover:-translate-y-2 active:scale-[0.99] transition-all duration-400 ease-out flex flex-col justify-between"
             >
               {/* Media Thumbnail Container */}
               <a
@@ -55,15 +116,15 @@ export const Sermons: React.FC = () => {
                   src={sermon.image}
                   alt={sermon.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                  className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent" />
 
                 {/* Center Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-cream-light/90 text-espresso group-hover:bg-terracotta group-hover:text-white flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
-                    <Play className="w-6 h-6 fill-current ml-0.5" />
+                  <div className="w-14 h-14 rounded-full bg-cream-light/95 text-espresso group-hover:bg-terracotta group-hover:text-white flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-115 group-hover:shadow-xl group-hover:shadow-terracotta/30 group-hover:ring-4 group-hover:ring-white/40">
+                    <Play className="w-6 h-6 fill-current ml-0.5 transition-transform duration-300 group-hover:scale-105" />
                   </div>
                 </div>
 
@@ -118,20 +179,26 @@ export const Sermons: React.FC = () => {
                     href={sermon.videoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-terracotta group-hover:underline cursor-pointer flex items-center gap-1"
+                    className="text-xs font-semibold text-terracotta hover:text-terracotta-hover group-hover:underline cursor-pointer flex items-center gap-1 transition-all duration-200"
                     aria-label={`Watch ${sermon.title} on YouTube (opens in new tab)`}
                   >
-                    Watch
-                    <ArrowRight className="w-3 h-3" />
+                    <span>Watch</span>
+                    <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Live Broadcast Callout */}
-        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-cream border border-cream-border flex flex-col sm:flex-row items-center justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mt-14 p-6 sm:p-8 rounded-3xl bg-cream border border-cream-border hover:border-sand hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
           <div className="flex items-center gap-4 text-left">
             <div className="w-12 h-12 rounded-full bg-olive-light text-olive flex items-center justify-center shrink-0">
               <Video className="w-6 h-6" />
@@ -158,7 +225,7 @@ export const Sermons: React.FC = () => {
           >
             Watch Livestream
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

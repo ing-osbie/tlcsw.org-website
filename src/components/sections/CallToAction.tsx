@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { callToActionContent, churchInfo } from "@/data/churchData";
 import { Button } from "@/components/ui/Button";
 
@@ -33,9 +34,15 @@ export const CallToAction: React.FC<CallToActionProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-espresso/80" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8"
+      >
         {/* Kicker Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream/10 border border-cream/20 text-xs font-semibold uppercase tracking-[0.2em] text-sand">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream/10 border border-cream/20 text-xs font-semibold uppercase tracking-[0.2em] text-sand hover:bg-cream/15 transition-colors duration-300">
           <Sparkles className="w-3.5 h-3.5 text-sand" />
           <span>{callToActionContent.kicker}</span>
         </div>
@@ -55,7 +62,7 @@ export const CallToAction: React.FC<CallToActionProps> = ({
           <Button
             variant="primary"
             size="lg"
-            href={churchInfo.socials.whatsapp}
+            href="https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20to%20the%20church."
             target="_blank"
             rel="noopener noreferrer"
             onClick={onPlanVisitClick}
@@ -80,7 +87,7 @@ export const CallToAction: React.FC<CallToActionProps> = ({
         <div className="pt-8 text-xs uppercase tracking-[0.25em] text-sand/80 font-medium">
           Thursday at 9:00 AM · Sunday at 6:00 PM · East Legon, Accra, Ghana
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

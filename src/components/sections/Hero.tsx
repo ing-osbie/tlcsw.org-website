@@ -16,15 +16,64 @@ export const Hero: React.FC<HeroProps> = ({
   onPlanVisitClick,
   onWatchLatestClick,
 }) => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      const playVideo = () => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Autoplay prevented by browser policy, poster shown
+          });
+        }
+      };
+      playVideo();
+      video.addEventListener("loadedmetadata", playVideo);
+      video.addEventListener("canplay", playVideo);
+      return () => {
+        video.removeEventListener("loadedmetadata", playVideo);
+        video.removeEventListener("canplay", playVideo);
+      };
+    }
+  }, []);
+
   return (
     <section
       id="hero"
       aria-label="Hero Introduction"
       className="relative min-h-[92vh] sm:min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-cream overflow-hidden"
     >
+      {/* Background Video Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <video
+          ref={videoRef}
+          src="/videos/about-background.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/videos/about-background-poster.jpg"
+          preload="auto"
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/videos/about-background.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Subtle Dark Overlay */}
+      <div
+        className="absolute inset-0 z-[1] bg-black/35 pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Subtle architectural background grid / watermark pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 z-[2] opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, #1A1412 1px, transparent 0)`,
           backgroundSize: "40px 40px",

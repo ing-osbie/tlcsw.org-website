@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, HeartHandshake, Compass } from "lucide-react";
 import { missionContent } from "@/data/churchData";
 import { Button } from "@/components/ui/Button";
@@ -22,7 +23,13 @@ export const Mission: React.FC<MissionProps> = ({ onLearnMoreClick }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Top Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pb-16 border-b border-cream-border">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pb-16 border-b border-cream-border"
+        >
           {/* Left Column: Big Editorial Statement */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center gap-2">
@@ -62,7 +69,7 @@ export const Mission: React.FC<MissionProps> = ({ onLearnMoreClick }) => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Three Editorial Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 pt-16">
@@ -71,29 +78,33 @@ export const Mission: React.FC<MissionProps> = ({ onLearnMoreClick }) => {
             const Icon = icons[idx] || Compass;
 
             return (
-              <div
+              <motion.div
                 key={pillar.title}
-                className="group p-6 sm:p-8 rounded-2xl bg-cream border border-cream-border hover:border-sand hover:shadow-lg transition-all duration-300 relative space-y-4"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.12, ease: "easeOut" }}
+                className="group p-6 sm:p-8 rounded-2xl bg-cream border border-cream-border hover:border-sand hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out relative space-y-4"
               >
                 {/* Pillar Header with Roman / Arabic Numeral */}
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-full bg-cream-surface border border-cream-border flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-cream-surface border border-cream-border flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-all duration-300 group-hover:scale-110 shadow-2xs">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="font-serif text-2xl sm:text-3xl text-sand/80 font-medium">
+                  <span className="font-serif text-2xl sm:text-3xl text-sand/80 font-medium transition-colors duration-300 group-hover:text-terracotta">
                     {pillar.number}
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-serif text-xl sm:text-2xl font-medium text-espresso group-hover:text-terracotta transition-colors">
+                  <h3 className="font-serif text-xl sm:text-2xl font-medium text-espresso group-hover:text-terracotta transition-colors duration-200">
                     {pillar.title}
                   </h3>
                   <p className="text-sm text-warm-gray leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

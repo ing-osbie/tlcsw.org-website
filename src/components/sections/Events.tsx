@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Clock, Calendar, Navigation, ExternalLink, Video } from "lucide-react";
+import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface EventsProps {
@@ -20,32 +21,45 @@ export const Events: React.FC<EventsProps> = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <SectionHeading
-          kicker="EVENTS"
-          title="UPCOMING EVENT"
-          subtitle="Join us for three powerful days of worship, prayer, teaching and prophetic ministry."
-          alignment="split"
-          actionSlot={
-            <a
-              href={googleMapsDirectionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/[0.04] text-xs font-semibold uppercase tracking-wider transition-all duration-200"
-            >
-              <Navigation className="w-3.5 h-3.5 text-terracotta" />
-              <span>Venue Directions</span>
-            </a>
-          }
-          className="mb-14 sm:mb-18"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <SectionHeading
+            kicker="EVENTS"
+            title="UPCOMING EVENT"
+            subtitle="Join us for three powerful days of worship, prayer, teaching and prophetic ministry."
+            alignment="split"
+            actionSlot={
+              <a
+                href={googleMapsDirectionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/[0.04] text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
+              >
+                <Navigation className="w-3.5 h-3.5 text-terracotta" />
+                <span>Venue Directions</span>
+              </a>
+            }
+            className="mb-14 sm:mb-18"
+          />
+        </motion.div>
 
         {/* Featured Real Event Card */}
-        <div className="space-y-6">
-          <div className="group bg-cream-surface hover:bg-cream-light border border-cream-border hover:border-sand rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 shadow-sm hover:shadow-lg">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="space-y-6"
+        >
+          <div className="group bg-cream-surface hover:bg-cream-light border border-cream-border hover:border-sand/70 rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               {/* Date Badge Column */}
               <div className="lg:col-span-3 flex items-center lg:flex-col lg:items-start gap-4 lg:gap-2">
-                <div className="px-5 py-3 rounded-2xl bg-cream border border-cream-border text-center shadow-xs min-w-[90px]">
+                <div className="px-5 py-3 rounded-2xl bg-cream border border-cream-border group-hover:border-sand/60 text-center shadow-xs min-w-[90px] transition-colors duration-300">
                   <span className="text-xs font-semibold tracking-[0.2em] uppercase text-terracotta block">
                     OCT
                   </span>
@@ -103,20 +117,26 @@ export const Events: React.FC<EventsProps> = () => {
                   href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full lg:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+                  className="group/btn w-full lg:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
                   aria-label="Get directions to Hidden Treasures Events Center in Google Maps (opens in new tab)"
                 >
                   <Navigation className="w-4 h-4 fill-current shrink-0" />
                   <span>GET DIRECTIONS</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0" />
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Regular Weekly Gathering Times Section */}
-        <div className="mt-12 rounded-3xl bg-cream-surface border border-cream-border p-6 sm:p-8 lg:p-10 shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="mt-12 rounded-3xl bg-cream-surface border border-cream-border p-6 sm:p-8 lg:p-10 shadow-sm"
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-cream-border">
             <div>
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-terracotta block">
@@ -130,7 +150,7 @@ export const Events: React.FC<EventsProps> = () => {
               href="https://www.youtube.com/live/sc0q-iA1QW4?si=aNpYABMfwmuih_zb"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-medium text-olive hover:text-terracotta bg-olive-light px-3.5 py-1.5 rounded-full w-fit transition-colors group/live"
+              className="flex items-center gap-2 text-xs font-medium text-olive hover:text-terracotta bg-olive-light px-3.5 py-1.5 rounded-full w-fit transition-all duration-200 active:scale-95 group/live"
               title="Watch Live on YouTube (opens in new tab)"
             >
               <span className="w-2 h-2 rounded-full bg-olive animate-pulse" />
@@ -142,8 +162,8 @@ export const Events: React.FC<EventsProps> = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
             {/* Thursday Service Card */}
-            <div className="p-5 rounded-2xl bg-cream border border-cream-border/80 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="group/svc p-5 rounded-2xl bg-cream border border-cream-border/80 hover:border-sand/70 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0 shadow-2xs group-hover/svc:scale-105 transition-transform duration-300">
                 <Clock className="w-5 h-5" />
               </div>
               <div className="space-y-1">
@@ -160,8 +180,8 @@ export const Events: React.FC<EventsProps> = () => {
             </div>
 
             {/* Sunday Service Card */}
-            <div className="p-5 rounded-2xl bg-cream border border-cream-border/80 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0 shadow-2xs">
+            <div className="group/svc p-5 rounded-2xl bg-cream border border-cream-border/80 hover:border-sand/70 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0 shadow-2xs group-hover/svc:scale-105 transition-transform duration-300">
                 <Clock className="w-5 h-5" />
               </div>
               <div className="space-y-1">
@@ -186,7 +206,7 @@ export const Events: React.FC<EventsProps> = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

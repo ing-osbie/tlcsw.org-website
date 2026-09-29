@@ -73,8 +73,8 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
               <div className="pt-2 border-t border-cream-border/70">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3">
                   {/* Event & Dates Card */}
-                  <div className="p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0">
+                  <div className="group/vitem p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
                       <Calendar className="w-5 h-5" />
                     </div>
                     <div>
@@ -91,8 +91,8 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
                   </div>
 
                   {/* Gathering Time Card */}
-                  <div className="p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0">
+                  <div className="group/vitem p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
@@ -113,7 +113,7 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
 
             {/* Right Column: Google Maps Location Card & Prominent Navigation CTA */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-2xl sm:rounded-3xl bg-cream border border-cream-border p-6 sm:p-7 shadow-sm flex flex-col justify-between overflow-hidden">
+              <div className="relative rounded-2xl sm:rounded-3xl bg-cream border border-cream-border p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-sand/80 transition-all duration-300 flex flex-col justify-between overflow-hidden">
                 {/* Decorative Accent Ribbon */}
                 <div className="h-1 w-full bg-gradient-to-r from-terracotta via-sand to-olive absolute top-0 left-0 right-0" />
 
@@ -159,12 +159,12 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
                     href={googleMapsDirectionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full min-h-[50px] sm:min-h-[52px] inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow-md active:scale-[0.98] transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
+                    className="group/btn w-full min-h-[50px] sm:min-h-[52px] inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 ease-out cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
                     aria-label="Get directions to Hidden Treasures Events Center in Google Maps (opens in new tab)"
                   >
-                    <Navigation className="w-4 h-4 fill-current shrink-0" />
+                    <Navigation className="w-4 h-4 fill-current shrink-0 transition-transform duration-300 group-hover/btn:-translate-y-0.5" />
                     <span>GET DIRECTIONS</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0" />
+                    <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   </a>
                 </div>
               </div>

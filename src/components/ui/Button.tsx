@@ -25,17 +25,17 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-terracotta text-white hover:bg-terracotta-hover active:scale-[0.98] shadow-sm hover:shadow transition-all duration-200 focus-visible:ring-terracotta",
+    "bg-terracotta text-white hover:bg-terracotta-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out focus-visible:ring-terracotta shadow-xs",
   secondary:
-    "bg-espresso text-cream-light hover:bg-espresso-surface active:scale-[0.98] shadow-sm hover:shadow transition-all duration-200 focus-visible:ring-espresso",
+    "bg-espresso text-cream-light hover:bg-espresso-surface hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out focus-visible:ring-espresso shadow-xs",
   outline:
-    "border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/[0.04] active:scale-[0.98] transition-all duration-200 focus-visible:ring-espresso",
+    "border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/[0.04] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out focus-visible:ring-espresso",
   ghost:
-    "text-espresso hover:text-terracotta hover:bg-espresso/[0.04] transition-colors duration-200 focus-visible:ring-espresso",
+    "text-espresso hover:text-terracotta hover:bg-espresso/[0.04] active:scale-[0.97] transition-all duration-200 focus-visible:ring-espresso",
   light:
-    "bg-cream-light text-espresso hover:bg-white active:scale-[0.98] shadow-sm hover:shadow transition-all duration-200 focus-visible:ring-white",
+    "bg-cream-light text-espresso hover:bg-white hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out focus-visible:ring-white shadow-xs",
   "outline-light":
-    "border border-white/40 text-cream hover:border-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 focus-visible:ring-white",
+    "border border-white/40 text-cream hover:border-white hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-300 ease-out focus-visible:ring-white",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -58,17 +58,21 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "inline-flex items-center justify-center select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-all";
+    "group inline-flex items-center justify-center select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-all";
   const combinedClasses = `${baseClasses} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   const content = (
     <>
       {icon && iconPosition === "left" && (
-        <span className="inline-flex shrink-0 items-center">{icon}</span>
+        <span className="inline-flex shrink-0 items-center transition-transform duration-300 ease-out group-hover:-translate-x-1">
+          {icon}
+        </span>
       )}
       <span>{children}</span>
       {icon && iconPosition === "right" && (
-        <span className="inline-flex shrink-0 items-center">{icon}</span>
+        <span className="inline-flex shrink-0 items-center transition-transform duration-300 ease-out group-hover:translate-x-1">
+          {icon}
+        </span>
       )}
     </>
   );
