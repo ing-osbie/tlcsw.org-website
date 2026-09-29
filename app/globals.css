@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --color-cream: #FBF8F3;
+  --color-cream-light: #FDFAF6;
+  --color-cream-surface: #F5EFE6;
+  --color-cream-card: #ECE3D4;
+  --color-cream-border: #E2D7C5;
+
+  --color-espresso: #1A1412;
+  --color-espresso-surface: #241D1A;
+  --color-espresso-muted: #3A2F2A;
+  --color-espresso-border: #483B34;
+
+  --color-terracotta: #C85A32;
+  --color-terracotta-hover: #B24E28;
+  --color-terracotta-soft: #F9EFEB;
+  --color-terracotta-muted: #DF7650;
+
+  --color-olive: #4E5945;
+  --color-olive-dark: #374030;
+  --color-olive-light: #EFF3EC;
+  --color-olive-surface: #5E6C54;
+
+  --color-sand: #C9A982;
+  --color-sand-light: #F0E9DE;
+  --color-sand-border: #DDD1C0;
+
+  --color-warm-gray: #6F665F;
+  --color-warm-gray-light: #9C9188;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FBF8F3;
+  --foreground: #1A1412;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #C85A32;
+  color: #ffffff;
 }
