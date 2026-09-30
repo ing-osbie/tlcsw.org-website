@@ -53,7 +53,7 @@ export const churchInfo: ChurchInfo = {
     {
       name: "Thursday · Prophetic Feast",
       time: "9:00 AM",
-      description: "Prophetic worship, scripture teaching, and ministry.",
+      description: "Prophetic worship, scripture teaching, prayer, and ministry.",
     },
     {
       name: "Sunday · The Transformation Service",
@@ -63,7 +63,7 @@ export const churchInfo: ChurchInfo = {
     {
       name: "Sunday · Live Streaming",
       time: "6:30 PM",
-      description: "Live interactive online broadcast for our global sanctuary family.",
+      description: "Live streaming available every Sunday at 6:30 PM.",
     },
   ],
 };
@@ -92,9 +92,8 @@ export const welcomeContent = {
   badge: "Welcome to Our Family",
   headline: "A Church for Every Season of Life",
   leadParagraph:
-    "Whether you are walking through the doors of a church for the very first time, returning after years away, or seeking a deeper and more authentic walk of faith, we invite you to experience God's transformative love.",
-  bodyParagraph:
-    "We believe faith is best lived in honest relationships. We do not demand perfection—instead, we foster a space of grace, vulnerability, and genuine hospitality where people of all generations can discover Christ-centered purpose together.",
+    "A ministry visioned with the five fold ministry to renew believers into their true image and identity, the mandate to equip and transform generations with a divine mandate from the Lord to liberate the world from evil oppression through prophecies, healing and teaching God's word empowered by the Holy Spirit to take over the world for the kingdom of God, And has a mission of spreading the goods news of our Lord Jesus Christ to the world and alleviating human suffering to providing the needs of people in the kingdom of Christ.",
+  bodyParagraph: "",
   quote:
     "“For where two or three are gathered in my name, there am I among them.”",
   quoteReference: "Matthew 18:20",
@@ -107,61 +106,38 @@ export const welcomeContent = {
   secondaryImageAlt: "Sunlight shining through sanctuary windows",
   stats: [
     {
-      value: "30+",
+      value: "1+",
       label: "Years of Ministry",
-      description: "Rooted in our local community since 1994",
+      description: "Rooted in our local community",
     },
     {
-      value: "50+",
+      value: "10+",
       label: "Outreach Partners",
       description: "Serving vulnerable families locally and globally",
     },
     {
-      value: "1,200+",
+      value: "800+",
       label: "Active Members",
-      description: "Growing together across three Sunday gatherings",
+      description: "Growing together across our gatherings",
     },
   ] as StatItem[],
 };
 
 export const missionContent = {
   kicker: "Our Core Mission",
-  headline: "Knowing God. Loving People. Changing Lives.",
-  subheading:
-    "Our rhythm of life is rooted in the timeless teachings of Jesus: devotion to prayer, unconditional love for our neighbors, and transformative service in our world.",
-  description:
-    "At The Lord's Covenant Sanctuary, everything we do stems from three unshakeable anchors. We believe spiritual growth is not a private endeavor, but an adventure lived out through community, generous hospitality, and active compassion for our city.",
-  pillars: [
-    {
-      number: "01",
-      title: "Knowing God",
-      description:
-        "Pursuing genuine intimacy with Christ through scripture, thoughtful worship, and deep contemplative prayer.",
-    },
-    {
-      number: "02",
-      title: "Loving People",
-      description:
-        "Building authentic multi-generational community where everyone is known, valued, supported, and welcomed.",
-    },
-    {
-      number: "03",
-      title: "Changing Lives",
-      description:
-        "Living out sacrificial generosity and justice, bringing restoration and hope to our city and beyond.",
-    },
-  ] as FaithPillar[],
+  headline:
+    "To establish God's government on earth through the ministry of the Holy spirit",
+  subheading: "",
+  description: "",
+  pillars: [] as FaithPillar[],
 };
 
 export const ministriesData: Ministry[] = [
   {
     id: "kids",
     title: "Covenant Kids",
-    category: "Ages 0 - 11",
-    ageGroup: "Nursery - 5th Grade",
     description:
       "A joyful, safe environment where children discover Bible stories, wonder, and the unconditional love of Jesus through creative play and worship.",
-    meetingTime: "Sundays at 6:00 PM",
     image:
       "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=1000&q=80",
     href: "https://wa.me/233207018121",
@@ -169,35 +145,17 @@ export const ministriesData: Ministry[] = [
   {
     id: "youth",
     title: "The Collective Youth",
-    category: "Ages 12 - 18",
-    ageGroup: "Middle & High School",
     description:
       "A vibrant community where students wrestle with life's big questions, build lifelong friendships, and develop an authentic faith.",
-    meetingTime: "Wednesdays at 6:30 PM",
     image:
       "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1000&q=80",
     href: "https://wa.me/233207018121",
   },
   {
-    id: "young-adults",
-    title: "Young Adults",
-    category: "Ages 18 - 30",
-    ageGroup: "College & Young Professionals",
-    description:
-      "Navigating career, purpose, and relationships with intentional community, weekly small groups, and monthly collective dinners.",
-    meetingTime: "Bi-Weekly Gatherings",
-    image:
-      "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=80",
-    href: "https://wa.me/233207018121",
-  },
-  {
     id: "men",
     title: "Men’s Fellowship",
-    category: "Adult Men",
-    ageGroup: "All Ages",
     description:
       "Brothers walking side-by-side in spiritual accountability, monthly breakfasts, outdoor retreats, and hands-on service projects.",
-    meetingTime: "1st & 3rd Saturdays at 7:30 AM",
     image:
       "https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?auto=format&fit=crop&w=1000&q=80",
     href: "https://wa.me/233207018121",
@@ -205,25 +163,10 @@ export const ministriesData: Ministry[] = [
   {
     id: "women",
     title: "Covenant Women",
-    category: "Adult Women",
-    ageGroup: "All Ages",
     description:
       "Fostering grace-filled fellowship, seasonal Bible studies, prayer circles, and mentorship that strengthens the soul.",
-    meetingTime: "Tuesdays at 9:30 AM & 6:30 PM",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80",
-    href: "https://wa.me/233207018121",
-  },
-  {
-    id: "outreach",
-    title: "Local & Global Outreach",
-    category: "Mission & Compassion",
-    ageGroup: "Whole Church",
-    description:
-      "Extending Christ's hands and feet to our neighborhood food pantry, homeless shelters, refugee support, and global missions.",
-    meetingTime: "Monthly Service Projects",
-    image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1000&q=80",
     href: "https://wa.me/233207018121",
   },
 ];
@@ -272,17 +215,20 @@ export const sermonsData: Sermon[] = [
 
 export const eventsData: ChurchEvent[] = [
   {
-    id: "prophetic-service",
-    title: "3 DAYS OF PROPHETIC SERVICE",
-    date: "1st — 4th October",
+    id: "shift-prophetic-encounter",
+    title: "SHIFT · PROPHETIC ENCOUNTER",
+    date: "Saturday, 31st October",
     month: "OCT",
-    day: "1 — 4",
-    time: "6:30 PM each night · Doors open at 6:00 PM",
-    location: "Hidden Treasures Events Center, East Legon, Accra, Ghana",
-    category: "Worship • Prayer • Teaching • Prophetic Ministry",
+    day: "31",
+    time: "5:00 PM",
+    location: "Hidden Treasures Events Center - East Legon",
+    category: "Prophetic Encounter • Worship • Word",
     description:
-      "Join us for three powerful days of worship, prayer, teaching and prophetic ministry.",
+      "Join us for SHIFT · Prophetic Encounter ministering with Joshua A. Ntim, Uncle Ato, and Becky Bonney.",
     href: "https://www.google.com/maps/dir/?api=1&destination=Hidden+Treasures+Events+Center%2C+East+Legon%2C+Accra%2C+Ghana",
+    image: "/images/shift-web.jpg",
+    ministers: ["Uncle Ato", "Joshua A. Ntim", "Becky Bonney"],
+    contactPhone: "+233 20 701 8121",
   },
 ];
 
@@ -311,17 +257,18 @@ export const featuredEvent: FeaturedEventData = {
 };
 
 export const givingDetails = {
-  heading: "Give Online",
-  subheading:
-    "Thank you for supporting the work of God. You can give using any of the payment options below.",
+  heading: "KINGDOM GIVING & PARTNERSHIP",
+  subheading: "",
   mobileMoney: {
     title: "Mobile Money",
+    accountName: "The Lord's Covenant Sanctuary Worldwide/Joshua Addai Ntim",
     number: "0543605402",
     merchantId: "948221",
     reference: "948221",
   },
   bank: {
     title: "Bank Transfer",
+    accountName: "The Lord's Covenant Sanctuary Worldwide/Joshua Addai Ntim",
     name: "CBG",
     accountNumber: "2356543640001",
     swiftCode: "CBGHGHAC",

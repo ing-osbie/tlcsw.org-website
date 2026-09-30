@@ -103,10 +103,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               <div className="flex flex-col">
-                <span className="font-serif text-base sm:text-lg lg:text-xl font-semibold tracking-tight text-espresso leading-none group-hover:text-terracotta transition-colors duration-200">
+                <span className="font-serif text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-espresso leading-none group-hover:text-terracotta transition-colors duration-200">
                   The Lord&apos;s Covenant
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-terracotta mt-1">
+                <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold text-terracotta mt-1">
                   Sanctuary
                 </span>
               </div>
@@ -221,10 +221,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-serif text-base font-semibold text-espresso leading-none">
+                  <span className="font-serif text-lg sm:text-xl font-bold text-espresso leading-none">
                     The Lord&apos;s Covenant
                   </span>
-                  <span className="text-[9px] uppercase tracking-[0.22em] font-semibold text-terracotta mt-1">
+                  <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold text-terracotta mt-1">
                     Sanctuary
                   </span>
                 </div>
@@ -282,7 +282,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   icon={<Heart className="w-4 h-4 text-terracotta fill-current" />}
                   iconPosition="left"
                 >
-                  Give Online
+                  Kingdom Giving &amp; Partnership
                 </Button>
               </div>
             </nav>

@@ -130,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onGiveClick }) => {
                   onClick={onGiveClick}
                   className="hover:text-terracotta transition-colors text-terracotta font-medium text-left cursor-pointer"
                 >
-                  Give Online
+                  KINGDOM GIVING &amp; PARTNERSHIP
                 </button>
               </li>
             </ul>

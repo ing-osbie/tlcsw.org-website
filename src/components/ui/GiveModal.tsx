@@ -124,262 +124,342 @@ export const GiveModal: React.FC<GiveModalProps> = ({ isOpen, onClose }) => {
                 id="give-modal-title"
                 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-cream-light mt-3"
               >
-            {givingDetails.heading}
-          </h2>
+                {givingDetails.heading}
+              </h2>
 
-          <p className="text-sm sm:text-base text-cream/80 mt-2 max-w-xl leading-relaxed">
-            {givingDetails.subheading}
-          </p>
-        </div>
-
-        {/* Scrollable Content Body */}
-        <div className="p-6 sm:p-8 space-y-6 overflow-y-auto">
-          {/* Payment Options Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-            {/* Card 1: Mobile Money */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 border border-cream-border shadow-xs hover:border-sand hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5">
-              <div className="space-y-4">
-                {/* Card Title & Icon */}
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-terracotta-soft text-terracotta flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
-                    <Smartphone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-medium text-espresso">
-                      {givingDetails.mobileMoney.title}
-                    </h3>
-                    <p className="text-xs text-warm-gray">MTN · Telecel · AT</p>
-                  </div>
-                </div>
-
-                {/* MoMo Number */}
-                <div className="space-y-1.5 pt-1">
-                  <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
-                    MoMo Number
-                  </label>
-                  <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
-                    <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
-                      {givingDetails.mobileMoney.number}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(
-                          givingDetails.mobileMoney.number,
-                          "momo-number"
-                        )
-                      }
-                      aria-label={`Copy MoMo Number ${givingDetails.mobileMoney.number}`}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
-                        copiedField === "momo-number"
-                          ? "bg-olive text-white shadow-xs scale-[1.02]"
-                          : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
-                      }`}
-                    >
-                      {copiedField === "momo-number" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Merchant ID */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
-                    Merchant ID
-                  </label>
-                  <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
-                    <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
-                      {givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(
-                          givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference,
-                          "momo-merchant-id"
-                        )
-                      }
-                      aria-label={`Copy Merchant ID ${givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference}`}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
-                        copiedField === "momo-merchant-id"
-                          ? "bg-olive text-white shadow-xs scale-[1.02]"
-                          : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
-                      }`}
-                    >
-                      {copiedField === "momo-merchant-id" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-cream-border/60">
-                <p className="text-xs text-warm-gray leading-normal flex items-start gap-1.5">
-                  <span className="text-terracotta font-bold">•</span>
-                  <span>Please enter Merchant ID <strong>948221</strong> when completing payment.</span>
+              {givingDetails.subheading ? (
+                <p className="text-sm sm:text-base text-cream/80 mt-2 max-w-xl leading-relaxed">
+                  {givingDetails.subheading}
                 </p>
-              </div>
+              ) : null}
             </div>
 
-            {/* Card 2: Bank Transfer */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 border border-cream-border shadow-xs hover:border-sand hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5">
-              <div className="space-y-4">
-                {/* Card Title & Icon */}
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-olive-light text-olive flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
-                    <Landmark className="w-5 h-5" />
+            {/* Scrollable Content Body */}
+            <div className="p-6 sm:p-8 space-y-6 overflow-y-auto">
+              {/* Payment Options Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                {/* Card 1: Mobile Money */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-cream-border shadow-xs hover:border-sand hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5">
+                  <div className="space-y-4">
+                    {/* Card Title & Icon */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-xl bg-terracotta-soft text-terracotta flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+                        <Smartphone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl font-medium text-espresso">
+                          {givingDetails.mobileMoney.title}
+                        </h3>
+                        <p className="text-xs text-warm-gray">MTN MoMo</p>
+                      </div>
+                    </div>
+
+                    {/* Account Name */}
+                    <div className="space-y-1.5 pt-1">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        Account Name
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-sm sm:text-base font-semibold text-espresso tracking-tight select-all pl-1">
+                          {givingDetails.mobileMoney.accountName}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.mobileMoney.accountName,
+                              "momo-account-name"
+                            )
+                          }
+                          aria-label="Copy Account Name"
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer shrink-0 ${
+                            copiedField === "momo-account-name"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "momo-account-name" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* MoMo Number */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        MoMo Number
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
+                          {givingDetails.mobileMoney.number}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.mobileMoney.number,
+                              "momo-number"
+                            )
+                          }
+                          aria-label={`Copy MoMo Number ${givingDetails.mobileMoney.number}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer shrink-0 ${
+                            copiedField === "momo-number"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "momo-number" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Merchant ID */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        Merchant ID
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
+                          {givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference,
+                              "momo-merchant-id"
+                            )
+                          }
+                          aria-label={`Copy Merchant ID ${givingDetails.mobileMoney.merchantId || givingDetails.mobileMoney.reference}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer shrink-0 ${
+                            copiedField === "momo-merchant-id"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "momo-merchant-id" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-medium text-espresso">
-                      {givingDetails.bank.title}
-                    </h3>
-                    <p className="text-xs text-warm-gray">Local & International</p>
+
+                  <div className="pt-2 border-t border-cream-border/60">
+                    <p className="text-xs text-warm-gray leading-normal flex items-start gap-1.5">
+                      <span className="text-terracotta font-bold">•</span>
+                      <span>Please enter Merchant ID <strong>948221</strong> when completing payment.</span>
+                    </p>
                   </div>
                 </div>
 
-                {/* Bank Name */}
-                <div className="space-y-1.5 pt-1">
-                  <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
-                    Bank
-                  </label>
-                  <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
-                    <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
-                      {givingDetails.bank.name}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(givingDetails.bank.name, "bank-name")
-                      }
-                      aria-label={`Copy Bank Name ${givingDetails.bank.name}`}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
-                        copiedField === "bank-name"
-                          ? "bg-olive text-white shadow-xs scale-[1.02]"
-                          : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
-                      }`}
-                    >
-                      {copiedField === "bank-name" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
+                {/* Card 2: Bank Transfer */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-cream-border shadow-xs hover:border-sand hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5">
+                  <div className="space-y-4">
+                    {/* Card Title & Icon */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-xl bg-olive-light text-olive flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+                        <Landmark className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl font-medium text-espresso">
+                          {givingDetails.bank.title}
+                        </h3>
+                        <p className="text-xs text-warm-gray">Local &amp; International</p>
+                      </div>
+                    </div>
 
-                {/* Account Number */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
-                    Account Number
-                  </label>
-                  <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
-                    <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
-                      {givingDetails.bank.accountNumber}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(
-                          givingDetails.bank.accountNumber,
-                          "bank-account"
-                        )
-                      }
-                      aria-label={`Copy Account Number ${givingDetails.bank.accountNumber}`}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
-                        copiedField === "bank-account"
-                          ? "bg-olive text-white shadow-xs scale-[1.02]"
-                          : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
-                      }`}
-                    >
-                      {copiedField === "bank-account" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
+                    {/* Account Name */}
+                    <div className="space-y-1.5 pt-1">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        Account Name
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-sm sm:text-base font-semibold text-espresso tracking-tight select-all pl-1">
+                          {givingDetails.bank.accountName}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.bank.accountName,
+                              "bank-account-name"
+                            )
+                          }
+                          aria-label="Copy Account Name"
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer shrink-0 ${
+                            copiedField === "bank-account-name"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "bank-account-name" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
 
-                {/* SWIFT Code */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
-                    SWIFT Code
-                  </label>
-                  <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
-                    <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
-                      {givingDetails.bank.swiftCode}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(
-                          givingDetails.bank.swiftCode,
-                          "bank-swift"
-                        )
-                      }
-                      aria-label={`Copy SWIFT Code ${givingDetails.bank.swiftCode}`}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
-                        copiedField === "bank-swift"
-                          ? "bg-olive text-white shadow-xs scale-[1.02]"
-                          : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
-                      }`}
-                    >
-                      {copiedField === "bank-swift" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
-                          <span>Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
+                    {/* Bank Name */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        Bank
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
+                          {givingDetails.bank.name}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(givingDetails.bank.name, "bank-name")
+                          }
+                          aria-label={`Copy Bank Name ${givingDetails.bank.name}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
+                            copiedField === "bank-name"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "bank-name" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Account Number */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        Account Number
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
+                          {givingDetails.bank.accountNumber}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.bank.accountNumber,
+                              "bank-account"
+                            )
+                          }
+                          aria-label={`Copy Account Number ${givingDetails.bank.accountNumber}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
+                            copiedField === "bank-account"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "bank-account" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* SWIFT Code */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-warm-gray uppercase tracking-wider block">
+                        SWIFT Code
+                      </label>
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-cream-surface/60 border border-cream-border transition-colors hover:border-sand/70">
+                        <span className="font-mono text-base font-semibold text-espresso tracking-wider select-all pl-1">
+                          {givingDetails.bank.swiftCode}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(
+                              givingDetails.bank.swiftCode,
+                              "bank-swift"
+                            )
+                          }
+                          aria-label={`Copy SWIFT Code ${givingDetails.bank.swiftCode}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium active:scale-95 transition-all duration-200 cursor-pointer ${
+                            copiedField === "bank-swift"
+                              ? "bg-olive text-white shadow-xs scale-[1.02]"
+                              : "bg-white hover:bg-espresso hover:text-white text-espresso border border-cream-border shadow-2xs"
+                          }`}
+                        >
+                          {copiedField === "bank-swift" ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 animate-in zoom-in-75 duration-200" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5 text-warm-gray group-hover:text-white" />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 border-t border-cream-border/60">
+                    <p className="text-xs text-warm-gray leading-normal flex items-start gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-olive shrink-0 mt-0.5" />
+                      <span>Secure direct bank wire and inter-bank clearance.</span>
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-cream-border/60">
-                <p className="text-xs text-warm-gray leading-normal flex items-start gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-olive shrink-0 mt-0.5" />
-                  <span>Secure direct bank wire and inter-bank clearance.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Scripture Encouragement Banner */}
+              {/* Scripture Encouragement Banner */}
           <div className="bg-cream-surface/80 rounded-xl p-4 border border-cream-border text-center">
             <p className="text-xs italic text-warm-gray leading-relaxed max-w-xl mx-auto">
               &ldquo;Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.&rdquo;

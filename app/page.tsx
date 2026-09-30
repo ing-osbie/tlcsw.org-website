@@ -84,7 +84,7 @@ export default function Home() {
       {/* Footer */}
       <Footer onGiveClick={() => setIsGiveOpen(true)} />
 
-      {/* Interactive Give Online Modal */}
+      {/* Kingdom Giving & Partnership Modal */}
       <GiveModal
         isOpen={isGiveOpen}
         onClose={() => setIsGiveOpen(false)}

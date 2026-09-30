@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   MapPin,
   Navigation,
-  Calendar,
   Clock,
   ExternalLink,
 } from "lucide-react";
@@ -69,41 +68,62 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
                 </p>
               </div>
 
-              {/* Event Schedule Info Cards */}
-              <div className="pt-2 border-t border-cream-border/70">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3">
-                  {/* Event & Dates Card */}
+              {/* Gathering Times Info Cards */}
+              <div className="pt-2 border-t border-cream-border/70 space-y-3">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta block pt-1">
+                  GATHERING TIMES
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {/* Thursday Gathering Card */}
                   <div className="group/vitem p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
                     <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
-                      <Calendar className="w-5 h-5" />
+                      <Clock className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray block">
-                        3 Days of Prophetic Service
-                      </span>
-                      <p className="font-serif text-base sm:text-lg font-medium text-espresso mt-0.5 leading-snug">
-                        1st — 4th October
-                      </p>
-                      <p className="text-xs text-warm-gray mt-0.5">
-                        Thursday — Sunday
+                      <div className="font-serif text-lg sm:text-xl font-medium text-espresso leading-snug">
+                        9:00 AM
+                      </div>
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-terracotta mt-0.5">
+                        Thursday · Prophetic Feast
+                      </div>
+                      <p className="text-xs text-warm-gray mt-1 leading-relaxed">
+                        Prophetic worship, scripture teaching, prayer, and ministry.
                       </p>
                     </div>
                   </div>
 
-                  {/* Gathering Time Card */}
+                  {/* Sunday Transformation Service Card */}
                   <div className="group/vitem p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
                     <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray block">
-                        Gathering Time
-                      </span>
-                      <p className="font-serif text-base sm:text-lg font-medium text-espresso mt-0.5 leading-snug">
-                        6:30 PM each night
+                      <div className="font-serif text-lg sm:text-xl font-medium text-espresso leading-snug">
+                        6:00 PM
+                      </div>
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-espresso mt-0.5">
+                        Sunday · The Transformation Service
+                      </div>
+                      <p className="text-xs text-warm-gray mt-1 leading-relaxed">
+                        In-person worship encounter and transformative teaching.
                       </p>
-                      <p className="text-xs text-warm-gray mt-0.5">
-                        Doors open at 6:00 PM
+                    </div>
+                  </div>
+
+                  {/* Sunday Live Streaming Card */}
+                  <div className="group/vitem sm:col-span-2 p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-sand flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
+                      <Clock className="w-5 h-5 text-terracotta" />
+                    </div>
+                    <div>
+                      <div className="font-serif text-lg sm:text-xl font-medium text-espresso leading-snug">
+                        6:30 PM
+                      </div>
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-terracotta mt-0.5">
+                        Sunday · Live Streaming
+                      </div>
+                      <p className="text-xs text-warm-gray mt-1 leading-relaxed">
+                        Live streaming available every Sunday at 6:30 PM.
                       </p>
                     </div>
                   </div>
@@ -123,7 +143,7 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-olive animate-pulse" />
                       <span className="text-xs font-semibold uppercase tracking-wider text-espresso">
-                        Event Location
+                        Venue Location
                       </span>
                     </div>
                     <span className="text-[11px] font-medium text-warm-gray tracking-wider uppercase">

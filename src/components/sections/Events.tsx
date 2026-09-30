@@ -1,22 +1,26 @@
 "use client";
 
 import React from "react";
-import { Clock, Calendar, Navigation, ExternalLink, Video } from "lucide-react";
+import Image from "next/image";
+import { Calendar, Clock, Navigation, MapPin, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { eventsData } from "@/data/churchData";
 
 interface EventsProps {
   onPlanVisitClick?: () => void;
 }
 
-export const Events: React.FC<EventsProps> = () => {
+export const Events: React.FC<EventsProps> = ({ onPlanVisitClick }) => {
+  const event = eventsData[0];
   const googleMapsDirectionsUrl =
+    event?.href ||
     "https://www.google.com/maps/dir/?api=1&destination=Hidden+Treasures+Events+Center%2C+East+Legon%2C+Accra%2C+Ghana";
 
   return (
     <section
       id="events"
-      aria-label="Upcoming Event and Gathering Times"
+      aria-label="Upcoming Events"
       className="py-20 sm:py-28 lg:py-32 bg-cream relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +34,7 @@ export const Events: React.FC<EventsProps> = () => {
           <SectionHeading
             kicker="EVENTS"
             title="UPCOMING EVENT"
-            subtitle="Join us for three powerful days of worship, prayer, teaching and prophetic ministry."
+            subtitle="Join us for SHIFT · Prophetic Encounter with Joshua A. Ntim, Uncle Ato, and Becky Bonney."
             alignment="split"
             actionSlot={
               <a
@@ -47,162 +51,137 @@ export const Events: React.FC<EventsProps> = () => {
           />
         </motion.div>
 
-        {/* Featured Real Event Card */}
+        {/* Featured Upcoming Event Card */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="space-y-6"
+          className="rounded-3xl bg-cream-surface border border-cream-border p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all duration-300"
         >
-          <div className="group bg-cream-surface hover:bg-cream-light border border-cream-border hover:border-sand/70 rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-              {/* Date Badge Column */}
-              <div className="lg:col-span-3 flex items-center lg:flex-col lg:items-start gap-4 lg:gap-2">
-                <div className="px-5 py-3 rounded-2xl bg-cream border border-cream-border group-hover:border-sand/60 text-center shadow-xs min-w-[90px] transition-colors duration-300">
-                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-terracotta block">
-                    OCT
-                  </span>
-                  <span className="font-serif text-3xl sm:text-4xl font-medium text-espresso block leading-tight">
-                    1 — 4
-                  </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Left Column: Event Information (lg: 7 cols) */}
+            <div className="lg:col-span-7 space-y-5">
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="px-3.5 py-1 rounded-full bg-cream border border-cream-border text-xs font-semibold uppercase tracking-wider text-terracotta shadow-2xs">
+                  {event.month} {event.day}
                 </div>
-
-                <div className="lg:pt-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-olive bg-olive-light px-3 py-1 rounded-full inline-block">
-                    Worship • Prayer • Teaching • Prophetic Ministry
-                  </span>
+                <div className="px-3.5 py-1 rounded-full bg-olive-light border border-olive/20 text-xs font-semibold uppercase tracking-wider text-olive">
+                  {event.category}
                 </div>
               </div>
 
-              {/* Event Details Column */}
-              <div className="lg:col-span-6 space-y-3">
-                <h3 className="font-serif text-2xl sm:text-3xl font-medium text-espresso group-hover:text-terracotta transition-colors leading-snug">
-                  3 DAYS OF PROPHETIC SERVICE
+              {/* Title & Description */}
+              <div className="space-y-2">
+                <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-espresso leading-[1.12]">
+                  {event.title}
                 </h3>
-
-                <p className="text-sm text-warm-gray leading-relaxed max-w-xl">
-                  Join us for three powerful days of worship, prayer, teaching and prophetic ministry.
+                <p className="text-base text-warm-gray leading-relaxed max-w-xl">
+                  {event.description}
                 </p>
+              </div>
 
-                <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-warm-gray pt-1">
-                  <span className="flex items-center gap-1.5 font-medium text-espresso">
-                    <Calendar className="w-3.5 h-3.5 text-terracotta" />
-                    1st — 4th October · Thursday — Sunday
+              {/* Ministers Badge List */}
+              {event.ministers && event.ministers.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-terracotta" />
+                    <span>Ministers:</span>
                   </span>
-
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-terracotta" />
-                    6:30 PM each night (Doors open at 6:00 PM)
-                  </span>
-
-                  <a
-                    href={googleMapsDirectionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-espresso hover:text-terracotta transition-colors font-medium group/loc"
-                  >
-                    <span role="img" aria-label="Location pin" className="text-terracotta">
-                      📍
+                  {event.ministers.map((minister) => (
+                    <span
+                      key={minister}
+                      className="px-3 py-1 rounded-full bg-cream border border-cream-border text-xs font-semibold text-espresso shadow-2xs"
+                    >
+                      {minister}
                     </span>
-                    <span>Hidden Treasures Events Center, East Legon, Accra, Ghana</span>
-                    <ExternalLink className="w-3 h-3 opacity-60 group-hover/loc:opacity-100" />
-                  </a>
+                  ))}
+                </div>
+              )}
+
+              {/* Structured Event Details */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2 border-t border-cream-border/80">
+                <div className="p-3.5 rounded-2xl bg-cream border border-cream-border flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0">
+                    <Calendar className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-warm-gray block">
+                      Date
+                    </span>
+                    <p className="font-serif text-base font-medium text-espresso mt-0.5">
+                      {event.date}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-cream border border-cream-border flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-warm-gray block">
+                      Time
+                    </span>
+                    <p className="font-serif text-base font-medium text-espresso mt-0.5">
+                      {event.time}
+                    </p>
+                    <span className="text-[11px] text-warm-gray block">Doors open at 4:30 PM</span>
+                  </div>
+                </div>
+
+                <div className="sm:col-span-2 p-3.5 rounded-2xl bg-cream border border-cream-border flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-cream-surface border border-cream-border text-sand flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-terracotta" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-warm-gray block">
+                      Location
+                    </span>
+                    <p className="font-serif text-base font-medium text-espresso mt-0.5">
+                      {event.location}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Action Column */}
-              <div className="lg:col-span-3 flex lg:justify-end items-center gap-3 pt-4 lg:pt-0 border-t lg:border-t-0 border-cream-border">
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3">
+                <a
+                  href="https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20for%20the%20SHIFT%20Prophetic%20Encounter."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onPlanVisitClick}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-300 cursor-pointer"
+                >
+                  <span>Plan Your Visit</span>
+                </a>
+
                 <a
                   href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn w-full lg:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white font-semibold text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:bg-terracotta-hover hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2"
-                  aria-label="Get directions to Hidden Treasures Events Center in Google Maps (opens in new tab)"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-espresso/25 text-espresso hover:border-espresso hover:bg-espresso/[0.04] font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
                 >
-                  <Navigation className="w-4 h-4 fill-current shrink-0" />
-                  <span>GET DIRECTIONS</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
+                  <Navigation className="w-4 h-4 text-terracotta" />
+                  <span>Get Directions</span>
                 </a>
               </div>
             </div>
-          </div>
-        </motion.div>
 
-        {/* Regular Weekly Gathering Times Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="mt-12 rounded-3xl bg-cream-surface border border-cream-border p-6 sm:p-8 lg:p-10 shadow-sm"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-cream-border">
-            <div>
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-terracotta block">
-                Weekly Services
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-medium text-espresso mt-1">
-                GATHERING TIMES
-              </h3>
-            </div>
-            <a
-              href="https://www.youtube.com/live/sc0q-iA1QW4?si=aNpYABMfwmuih_zb"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-medium text-olive hover:text-terracotta bg-olive-light px-3.5 py-1.5 rounded-full w-fit transition-all duration-200 active:scale-95 group/live"
-              title="Watch Live on YouTube (opens in new tab)"
-            >
-              <span className="w-2 h-2 rounded-full bg-olive animate-pulse" />
-              <Video className="w-3.5 h-3.5" />
-              <span>Live streaming available every Sunday at 6:30 PM</span>
-              <span className="font-semibold underline ml-0.5 group-hover/live:text-terracotta">Watch Live</span>
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-            {/* Thursday Service Card */}
-            <div className="group/svc p-5 rounded-2xl bg-cream border border-cream-border/80 hover:border-sand/70 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-terracotta flex items-center justify-center shrink-0 shadow-2xs group-hover/svc:scale-105 transition-transform duration-300">
-                <Clock className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <div className="font-serif text-2xl sm:text-3xl font-medium text-espresso">
-                  9:00 AM
-                </div>
-                <div className="text-sm font-semibold text-terracotta uppercase tracking-wider">
-                  Thursday · Prophetic Feast
-                </div>
-                <p className="text-xs text-warm-gray leading-relaxed pt-0.5">
-                  Prophetic worship, scripture teaching, prayer, and ministry.
-                </p>
-              </div>
-            </div>
-
-            {/* Sunday Service Card */}
-            <div className="group/svc p-5 rounded-2xl bg-cream border border-cream-border/80 hover:border-sand/70 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-cream-surface border border-cream-border text-olive flex items-center justify-center shrink-0 shadow-2xs group-hover/svc:scale-105 transition-transform duration-300">
-                <Clock className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <div className="font-serif text-2xl sm:text-3xl font-medium text-espresso">
-                  6:00 PM
-                </div>
-                <div className="text-sm font-semibold text-espresso uppercase tracking-wider">
-                  Sunday · The Transformation Service
-                </div>
-                <p className="text-xs text-warm-gray leading-relaxed pt-0.5">
-                  In-person worship encounter and transformative teaching.
-                </p>
-                <a
-                  href="https://www.youtube.com/live/sc0q-iA1QW4?si=aNpYABMfwmuih_zb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] text-olive hover:text-terracotta font-medium pt-1 flex items-center gap-1.5 transition-colors group/liveSunday"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-olive animate-pulse" />
-                  <span>Interactive livestream begins at 6:30 PM · <span className="underline group-hover/liveSunday:text-terracotta">Watch Live</span></span>
-                </a>
+            {/* Right Column: Visual Flyer (lg: 5 cols) */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-cream-border group/flyer">
+                <Image
+                  src={event.image || "/images/shift-web.jpg"}
+                  alt={`${event.title} flyer - The Lord's Covenant Sanctuary`}
+                  width={1200}
+                  height={720}
+                  priority
+                  className="w-full h-auto object-cover group-hover/flyer:scale-103 transition-transform duration-500"
+                  sizes="(max-width: 1024px) 100vw, 480px"
+                />
               </div>
             </div>
           </div>

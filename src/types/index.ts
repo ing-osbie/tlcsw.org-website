@@ -43,10 +43,10 @@ export interface ChurchInfo {
 export interface Ministry {
   id: string;
   title: string;
-  category: string;
-  ageGroup: string;
+  category?: string;
+  ageGroup?: string;
   description: string;
-  meetingTime: string;
+  meetingTime?: string;
   image: string;
   href: string;
 }
@@ -76,6 +76,9 @@ export interface ChurchEvent {
   category: string;
   description: string;
   href: string;
+  image?: string;
+  ministers?: string[];
+  contactPhone?: string;
 }
 
 export interface StatItem {
@@ -100,4 +103,6 @@ export interface FeaturedEventData {
   location: string;
   area: string;
   image: string;
+  ministers?: string[];
+  contactPhone?: string;
 }

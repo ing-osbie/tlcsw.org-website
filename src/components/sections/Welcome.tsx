@@ -44,9 +44,11 @@ export const Welcome: React.FC = () => {
               {welcomeContent.leadParagraph}
             </p>
 
-            <p className="text-base sm:text-lg text-warm-gray leading-relaxed">
-              {welcomeContent.bodyParagraph}
-            </p>
+            {welcomeContent.bodyParagraph ? (
+              <p className="text-base sm:text-lg text-warm-gray leading-relaxed">
+                {welcomeContent.bodyParagraph}
+              </p>
+            ) : null}
 
             {/* Editorial Scripture Card */}
             <div className="p-6 sm:p-7 rounded-2xl bg-cream border border-cream-border relative transition-all duration-300 hover:border-sand hover:shadow-md hover:-translate-y-0.5">
