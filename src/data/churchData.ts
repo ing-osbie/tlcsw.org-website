@@ -60,11 +60,6 @@ export const churchInfo: ChurchInfo = {
       time: "6:00 PM",
       description: "In-person worship encounter and transformative teaching.",
     },
-    {
-      name: "Sunday · Live Streaming",
-      time: "6:30 PM",
-      description: "Live streaming available every Sunday at 6:30 PM.",
-    },
   ],
 };
 
@@ -74,7 +69,7 @@ export const heroContent = {
   supportingCopy:
     "A place to encounter God, grow in faith, and build meaningful community.",
   serviceHighlight: "Thursday at 9:00 AM · Sunday at 6:00 PM",
-  serviceNote: "In-Person & Streaming Online at 6:30 PM",
+  serviceNote: "In-Person Gathering",
   primaryCta: {
     label: "Join Us",
     href: "#service-info",

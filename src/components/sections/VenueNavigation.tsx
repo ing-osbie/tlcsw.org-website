@@ -109,24 +109,6 @@ export const VenueNavigation: React.FC<VenueNavigationProps> = () => {
                       </p>
                     </div>
                   </div>
-
-                  {/* Sunday Live Streaming Card */}
-                  <div className="group/vitem sm:col-span-2 p-4 rounded-2xl bg-cream/90 border border-cream-border flex items-start gap-3.5 transition-all duration-300 hover:border-sand hover:-translate-y-0.5 hover:shadow-xs">
-                    <div className="w-10 h-10 rounded-xl bg-cream-surface border border-cream-border text-sand flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/vitem:scale-105">
-                      <Clock className="w-5 h-5 text-terracotta" />
-                    </div>
-                    <div>
-                      <div className="font-serif text-lg sm:text-xl font-medium text-espresso leading-snug">
-                        6:30 PM
-                      </div>
-                      <div className="text-[11px] font-semibold uppercase tracking-wider text-terracotta mt-0.5">
-                        Sunday · Live Streaming
-                      </div>
-                      <p className="text-xs text-warm-gray mt-1 leading-relaxed">
-                        Live streaming available every Sunday at 6:30 PM.
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

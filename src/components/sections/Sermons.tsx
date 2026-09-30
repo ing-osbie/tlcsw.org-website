@@ -208,7 +208,7 @@ export const Sermons: React.FC = () => {
                 Live Online Gathering
               </h4>
               <p className="text-xs sm:text-sm text-warm-gray mt-0.5">
-                Join our real-time interactive livestream every Sunday at 6:30 PM on YouTube & Facebook.
+                Join our real-time interactive livestream every Sunday on YouTube & Facebook.
               </p>
             </div>
           </div>

@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onGiveClick }) => {
                 Stay Rooted in What Matters
               </h3>
               <p className="text-sm text-cream/70 max-w-xl leading-relaxed">
-                Receive Joshua Addai Ntim’s weekly encouragement, scripture reading guides, and community updates delivered to your inbox every Friday.
+                Receive Joshua Addai Ntim’s weekly encouragement, scripture reading guides, and send prayer requests.
               </p>
             </div>
 
@@ -151,10 +151,6 @@ export const Footer: React.FC<FooterProps> = ({ onGiveClick }) => {
                 </li>
               ))}
             </ul>
-            <p className="text-xs text-sand pt-1 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-olive animate-pulse" />
-              Live streaming available every Sunday at 6:30 PM
-            </p>
           </div>
 
           {/* Col 4: Contact & Location */}
