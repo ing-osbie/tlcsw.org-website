@@ -19,7 +19,7 @@ export default function Home() {
   const [showFloatingWhatsapp, setShowFloatingWhatsapp] = useState(false);
 
   const planVisitWhatsappUrl =
-    "https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20to%20the%20church.";
+    "https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20for%20the%203%20Days%20Prophetic%20Service.";
 
   const handlePlanVisit = () => {
     window.open(planVisitWhatsappUrl, "_blank", "noopener,noreferrer");

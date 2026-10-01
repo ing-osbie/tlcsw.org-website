@@ -96,6 +96,7 @@ export interface FaithPillar {
 export interface FeaturedEventData {
   eyebrow: string;
   title: string;
+  theme?: string;
   description: string;
   date: string;
   days: string;

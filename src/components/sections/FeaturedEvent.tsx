@@ -101,10 +101,17 @@ export const FeaturedEvent: React.FC<FeaturedEventProps> = ({
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="space-y-6 sm:space-y-7 text-left order-1"
           >
-            {/* Eyebrow Label */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-surface border border-cream-border text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{event.eyebrow}</span>
+            {/* Eyebrow Label & Theme */}
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-surface border border-cream-border text-xs font-semibold uppercase tracking-[0.2em] text-terracotta shadow-2xs">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{event.eyebrow}</span>
+              </div>
+              {event.theme && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-olive-light border border-olive/20 text-xs font-bold uppercase tracking-wider text-olive shadow-2xs">
+                  <span>Theme: {event.theme}</span>
+                </div>
+              )}
             </div>
 
             {/* Large Editorial Heading */}
@@ -161,16 +168,28 @@ export const FeaturedEvent: React.FC<FeaturedEventProps> = ({
                   <div className="w-10 h-10 rounded-xl bg-cream border border-cream-border text-sand flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-300 group-hover/item:scale-105">
                     <MapPin className="w-5 h-5 text-terracotta" />
                   </div>
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray block">
-                      Venue Location
-                    </span>
-                    <p className="font-serif text-lg sm:text-xl font-medium text-espresso mt-0.5 leading-snug">
-                      {event.location}
-                    </p>
-                    <p className="text-xs sm:text-sm text-warm-gray font-sans mt-0.5">
-                      {event.area}
-                    </p>
+                  <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray block">
+                        Venue Location
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl font-medium text-espresso mt-0.5 leading-snug">
+                        {event.location}
+                      </p>
+                      <p className="text-xs sm:text-sm text-warm-gray font-sans mt-0.5">
+                        {event.area}
+                      </p>
+                    </div>
+                    {event.ministers && event.ministers.length > 0 && (
+                      <div className="sm:text-right pt-2 sm:pt-0 border-t sm:border-t-0 border-cream-border/80">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-warm-gray block">
+                          Ministering
+                        </span>
+                        <p className="font-serif text-base sm:text-lg font-medium text-espresso mt-0.5">
+                          {event.ministers.join(", ")}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -181,7 +200,7 @@ export const FeaturedEvent: React.FC<FeaturedEventProps> = ({
               <Button
                 variant="primary"
                 size="lg"
-                href="https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20to%20the%20church."
+                href="https://wa.me/233207018121?text=Hello%2C%20I%20would%20like%20to%20plan%20a%20visit%20for%20the%203%20Days%20Prophetic%20Service."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onPlanVisitClick}
@@ -218,8 +237,8 @@ export const FeaturedEvent: React.FC<FeaturedEventProps> = ({
                 <Image
                   src={event.image}
                   alt={`${event.title} flyer - The Lord's Covenant Sanctuary`}
-                  width={885}
-                  height={1080}
+                  width={6248}
+                  height={7620}
                   priority
                   style={{ objectFit: "contain" }}
                   className="w-full h-auto object-contain block select-none"

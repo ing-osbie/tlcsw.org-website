@@ -240,15 +240,18 @@ export const callToActionContent = {
 
 export const featuredEvent: FeaturedEventData = {
   eyebrow: "UPCOMING EVENT",
-  title: "3 Days of Prophetic Service",
+  title: "3 Days Prophetic Service",
+  theme: "Manifestation",
   description:
-    "Join us for three powerful days of worship, prayer, teaching and prophetic ministry.",
-  date: "1st — 4th October",
-  days: "Thursday — Sunday",
+    "Join us for three powerful days of prophetic worship, prayer, teaching, and divine manifestation.",
+  date: "28th — 30th October",
+  days: "Wednesday — Friday",
   time: "6:30 PM each night",
   location: "Hidden Treasures Events Center",
   area: "East Legon",
-  image: "/images/prophetic-service.png",
+  image: "/images/3-days-1.jpeg",
+  ministers: ["Joshua A. Ntim"],
+  contactPhone: "+233 20 701 8121",
 };
 
 export const givingDetails = {

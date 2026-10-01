@@ -2,9 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, HeartHandshake, Compass } from "lucide-react";
+import { BookOpen, HeartHandshake, Compass } from "lucide-react";
 import { missionContent } from "@/data/churchData";
-import { Button } from "@/components/ui/Button";
 
 interface MissionProps {
   onLearnMoreClick?: () => void;
