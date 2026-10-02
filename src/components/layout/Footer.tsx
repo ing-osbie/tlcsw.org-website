@@ -248,8 +248,21 @@ export const Footer: React.FC<FooterProps> = ({ onGiveClick }) => {
 
         {/* Bottom Bar: Copyright & Legal */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/60">
-          <div>
-            © {new Date().getFullYear()} {churchInfo.name}. All rights reserved.
+          <div className="text-center sm:text-left">
+            <div>
+              © {new Date().getFullYear()} {churchInfo.name}. All rights reserved.
+            </div>
+            <div className="mt-1">
+              Designed &amp; Developed by Ing. Osbie | WhatsApp:{" "}
+              <a
+                href="https://wa.me/233597139230"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-cream transition-colors underline underline-offset-2"
+              >
+                +233 59 7139 230
+              </a>
+            </div>
           </div>
 
           <div className="flex items-center gap-6">
